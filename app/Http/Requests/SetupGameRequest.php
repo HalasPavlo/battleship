@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SetupGameRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class SetupGameRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return (bool)Auth::user();
     }
 
     /**
@@ -22,7 +23,12 @@ class SetupGameRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'ships' => 'required|array',
+            'ships.*.type' => 'required|string|in:carrier,battleship,submarine',
+            'ships.*.position' => 'required|array|min:1',
+            'ships.*.position.*' => 'required|array',
+            'ships.*.position.*.row' => 'required|integer|between:1,10',
+            'ships.*.position.*.column' => 'required|integer|between:1,10',
         ];
     }
 }

@@ -24,7 +24,16 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
+            if ($e instanceof RuntimeException) {
+                return response()->json(
+                    [
+                        'success' => false,
+                        'message' => $e->getMessage(),
+                        'trace' => in_array(app()->environment(), ['local', 'testing']) ? $e->getTrace() : null
+                    ],
+                    400
+                );
+            }
         });
     }
 }

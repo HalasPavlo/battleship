@@ -9,8 +9,22 @@ class GameBoard extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'game_id',
+        'user_id',
+    ];
+
+    protected $casts = [
+        'board_data' => 'array',
+    ];
+
     public function game()
     {
         return $this->hasOne(Game::class);
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 }

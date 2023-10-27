@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
-class RuntimeException
+use Exception;
+
+class RuntimeException extends Exception
 {
 
 }

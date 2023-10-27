@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class MoveRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class MoveRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return (bool)Auth::user();
     }
 
     /**
@@ -22,7 +23,8 @@ class MoveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'row' => 'required|integer|digits_between:1,10',
+            'column' => 'required|integer|digits_between:1,10',
         ];
     }
 }

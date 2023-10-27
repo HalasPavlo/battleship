@@ -1,64 +1,51 @@
-## Battleships
-
-Your assignment is to create a API backend for a battleship(https://en.wikipedia.org/wiki/Battleship_(game)) game.
-
-#### The game should include:
-1. Creating a new battle ship game. The game board should be a 10x10 grid and each player should have:
-    - 1 ship taking 3 fields
-    - 2 ships taking 2 fields
-    - 4 ships taking 1 fields
-   
-2. Browsing currently opened/available games.
-3. Joining a game. A player can join any game, unless they are the creator.
-4. After both players have joined the game, they should be able to set up their ships on the board.
-5. When all ships are set, the game starts. Players can attack each other's fields once per turn. However, if a player hits a ship, they can continue attacking until they miss.
-6. If a player shoots a field that has already been targeted, they can shoot again.
-7. Once one of the players manages to destroy all of the opponent's ships, they should receive a message about winning the game.
-8. You can skip the functionality of notifying players about the state of their ships. Same goes for the player that lost.
-
 #### In order to run the application, follow the steps below:
-
-1. Install the dependencies:
-
+1. Create .env file from env.example
+2. Install the dependencies:
     ```bash
     composer install
     ```
-2. Create a SQLite database:
+3. Create a SQLite database:
 
     ```bash
     touch database/database.sqlite
     ```
-3. Run the database migrations:
+4. Run the database migrations:
 
     ```bash
     php artisan migrate
     ```
-4. Create a user:
 
-    ```bash
-    php artisan db:seed DatabaseSeeder
-    ```
 5. Serve the application:
 
     ```bash
     php artisan serve
     ```
 
-In order to authorize API requests, you need to use the token provided in the `users` table. Include the token as an HTTP header with each API request.
+In order to authorize API requests, I used `JWT`.
 
-The format of the header should be:
+The format of the header is still the same as mention in task:
 
 ```bash
 Authorization: Bearer <your_token>
 ```
 
-We except your code to be clean and solution well thought. 
-You can skip tests, writing a documentation, filtering/sorting on GET endpoints, logging etc.
-For simplicity, please use provided auth method.
-If something weird happens with SQLite and it won't work, go with mysql.
+#### In order to run the API requests please use INSOMNIA.json with insomnia client https://insomnia.rest/download. Everything is set up there.
 
-If you have any questions, please, feel free to contact us and ask! :)
+Steps to play the game
 
-Once you are ready with assignment, make a new repository and send a link to us. 
+1. Register User
+2. Login as a first User
+3. Create a game
+4. Register second User
+5. Login as a second User
+6. Enter the game as Second user
+7. Login as a first user
+8. Create user Move as so on...
 
-Good luck!
+Few game rules:
+1. There is only 3 type of ships : carrier(5 cells), battleship(4 cells), submarine(3 cells). App is fully extendable so more types of ship can be added.
+2. First more is always assign to owner
+3. When user hit last cell. He is a winner and we assign date of win and winner user in `games` table.'
+
+
+If you have any issues with running application please contact me. I will help :)
