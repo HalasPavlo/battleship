@@ -44,8 +44,8 @@ Steps to play the game
 
 Few game rules:
 1. There is only 3 type of ships : carrier(5 cells), battleship(4 cells), submarine(3 cells). App is fully extendable so more types of ship can be added.
-2. First more is always assign to owner
-3. When user hit last cell. He is a winner and we assign date of win and winner user in `games` table.'
+2. First move is always assign to owner
+3. When user hit last cell. He is a winner, and we assign date of win and winner user in `games` table.
 
 
 If you have any issues with running application please contact me. I will help :)
